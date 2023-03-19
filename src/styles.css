@@ -1,0 +1,70 @@
+h1 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 700;
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  line-height: 0;
+}
+.temperature {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  line-height: 0;
+  font-size: 36px;
+}
+div {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  text-align: left;
+}
+span.date {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  text-align: left;
+  text-align: left;
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+p.card-text {
+  font-size: 14px;
+  text-align: center;
+}
+
+.search-box {
+  display: inline-block;
+  padding: 10 px 20px;
+  margin: 20px 20px;
+}
+div.card {
+  display: inline-block;
+  left: auto;
+}
+
+.card-body {
+  padding: 10px auto;
+}
+
+div.cardweather {
+  display: block;
+}
+
+img {
+  max-width: 50%;
+  margin: 0 auto;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
