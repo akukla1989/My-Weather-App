@@ -18,6 +18,8 @@
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
+    <div class="container">
+      <div class="weather-app">
      <form id="search-form" class = "search-box">
       <input
         type="text"
@@ -35,14 +37,14 @@
       <span class="date">
       <p  id="current-date">Sunday, January 29, 2023</p></span> 
     </br>
-    <div class="container text-center">
+    
   <div class="row align-items-start">
-    <div class="col-3">
+    <div class="col-4">
       <span class="temperature" id = "temperature"> <h2>-2 °C</h2></span>
       <br>  
       <span class="weather-visual" id = "weather-visual"></span><p>Cloudy</p>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <p> Precipitation: 56%<br>
         Humidity: 100%<br>
         Wind: 13km/h
@@ -55,7 +57,7 @@
       </div>
     </div>
   </div>
-</div>
+
     <h1>6-DAY FORECAST</h1>
     <div class="container text-center">
   <div class="row">
@@ -84,8 +86,12 @@
   </div>
 </div>
     </div>
+    
     <br/> 
-    <a href="https://github.com/akukla1989/My-Weather-App.git">Open-source code</a> by Apolonia Rusiak
+    <small>
+    <a href="https://github.com/akukla1989/My-Weather-App.git" target="_blank">Open-source code</a> by Apolonia Rusiak</small>
+    </div>
+    </div>
     <script src="src/index.js"></script>
   </body>
   
