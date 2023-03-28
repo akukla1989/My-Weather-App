@@ -51,42 +51,44 @@ function formatTime(time) {
 }
 setInterval(formatTime(currentTime), 1000);
 
-function showWeather(call) {
-  let cityName = call.data.name;
-  document.querySelector("#city-input").innerHTML = `${cityName}`;
-  let newTemp = Math.round(call.data.main.temp);
-  document.getElementById("temperature").innerHTML = `${newTemp}°C`;
+function displayTemperature(response) {
+  console.log(response.data);
+  let temperatureElement = document.querySelector("#temperature");
+  let cityElement = document.querySelector("#city-input");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let iconElement = document.querySelector("#icon");
+
+  celsiusTemperature = response.data.temperature.current;
+
+  celsiusTemperature = response.data.temperature.current;
+
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  cityElement.innerHTML = response.data.city;
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
-function search(event) {
+
+function search(city) {
+  let apiKey = "d1f1534c3087543348aa47o4b68t0360";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
   event.preventDefault();
-  let apiCall = "c0d9a9e35c6cd5c8e848537c38d4d67a";
-  let city = document.querySelector("#search-text-input").value;
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&limit=5&units=metric&appid=${apiCall}`;
-  axios.get(url).then(showWeather);
+  let cityInputElement = document.querySelector("#search-input");
+  search(cityInputElement.value);
 }
 
-let searchBox = document.querySelector("#search-form");
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 
-searchBox.addEventListener("submit", search);
-
-function showTemperature(response) {
-  let temperature = Math.round(response.data.main.temp);
-  document.getElementById("temperature").innerHTML = `${temperature}°C`;
-  let currentCity = response.data.name;
-  document.getElementById("city-input").innerHTML = `${currentCity}`;
-}
-
-function showPosition(position) {
-  let apiKey = "c0d9a9e35c6cd5c8e848537c38d4d67a";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-
-  axios.get(apiUrl).then(showTemperature);
-}
-function getCurrentPosition() {
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
-
-let button = document.querySelector("#Current");
-button.addEventListener("click", getCurrentPosition);
+search("Toronto");
